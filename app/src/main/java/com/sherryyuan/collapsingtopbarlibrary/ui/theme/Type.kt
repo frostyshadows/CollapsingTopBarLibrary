@@ -1,4 +1,4 @@
-package com.sherryyuan.livelycolumn.ui.theme
+package com.sherryyuan.collapsingtopbarlibrary.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
