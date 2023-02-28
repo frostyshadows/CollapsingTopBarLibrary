@@ -20,6 +20,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 
@@ -27,13 +28,13 @@ import androidx.compose.ui.zIndex
 fun BoxLibrary(books: List<BookModel> = DEFAULT_BOOKS) {
     val listState = rememberLazyListState()
 
-    val collapsedTopBarHeightPx = with(LocalDensity.current) { COLLAPSED_TOP_BAR_HEIGHT.toPx() }
-    val expandedTopBarHeightPx = with(LocalDensity.current) { EXPANDED_TOP_BAR_HEIGHT.toPx() }
+    val overlapHeightPx = with(LocalDensity.current) {
+        EXPANDED_TOP_BAR_HEIGHT.toPx() - COLLAPSED_TOP_BAR_HEIGHT.toPx()
+    }
 
     val isCollapsed: Boolean by remember {
         derivedStateOf {
-            val isFirstItemHidden =
-                listState.firstVisibleItemScrollOffset > (expandedTopBarHeightPx - collapsedTopBarHeightPx)
+            val isFirstItemHidden = listState.firstVisibleItemScrollOffset > overlapHeightPx
             isFirstItemHidden || listState.firstVisibleItemIndex > 0
         }
     }
@@ -91,4 +92,20 @@ private fun ExpandedTopBar() {
             style = MaterialTheme.typography.h3,
         )
     }
+}
+
+@Preview
+@Composable
+private fun CollapsedTopBarPreview() {
+    Column {
+        CollapsedTopBar(isCollapsed = true)
+        Spacer(Modifier.height(16.dp))
+        CollapsedTopBar(isCollapsed = false)
+    }
+}
+
+@Preview
+@Composable
+private fun ExpandedTopBarPreview() {
+    ExpandedTopBar()
 }

@@ -19,9 +19,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background,
                 ) {
-                    ScaffoldLibrary()
+                    // ScaffoldLibrary()
                     // BoxLibrary()
-                    // Material3ScaffoldLibrary()
+                    Material3ScaffoldLibrary()
                 }
             }
         }

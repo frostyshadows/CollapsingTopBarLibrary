@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -80,4 +81,20 @@ private fun ExpandedTopBar() {
             style = MaterialTheme.typography.h3,
         )
     }
+}
+
+@Preview
+@Composable
+private fun CollapsedTopBarPreview() {
+    Column {
+        CollapsedTopBar(isCollapsed = true)
+        Spacer(Modifier.height(16.dp))
+        CollapsedTopBar(isCollapsed = false)
+    }
+}
+
+@Preview
+@Composable
+private fun ExpandedTopBarPreview() {
+    ExpandedTopBar()
 }

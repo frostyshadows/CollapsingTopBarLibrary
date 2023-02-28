@@ -27,7 +27,7 @@ fun Material3ScaffoldLibrary(books: List<BookModel> = DEFAULT_BOOKS) {
     }
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-        topBar = { TopBar(scrollBehavior, isCollapsed) }
+        topBar = { LibraryTopBar(scrollBehavior, isCollapsed) }
     ) { padding ->
         LazyColumn(
             modifier = Modifier.padding(padding),
@@ -43,7 +43,7 @@ fun Material3ScaffoldLibrary(books: List<BookModel> = DEFAULT_BOOKS) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun TopBar(scrollBehavior: TopAppBarScrollBehavior, isCollapsed: Boolean) =
+private fun LibraryTopBar(scrollBehavior: TopAppBarScrollBehavior, isCollapsed: Boolean) =
     LargeTopAppBar(
         title = { Text(text = "Library") },
         colors = TopAppBarDefaults.mediumTopAppBarColors(
